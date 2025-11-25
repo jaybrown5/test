@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Clock Demo</title>
+  <style>
+    body {
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      padding: 50px;
+      background-color: #f4f4f4;
+    }
+    #clock {
+      font-size: 48px;
+      color: #333;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>JavaScript Digital Clock</h1>
+  <p>The time updates automatically every second:</p>
+  <div id="clockPlaceholder"></div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById("clock").textContent = 
+        `${hours}:${minutes}:${seconds}`;
+    }
+
+    // Update immediately, then every second
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>
+

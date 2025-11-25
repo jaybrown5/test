@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Palindrome Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Palindrome Checker</h1>
+    <p>Enter a word or phrase to check if it's a palindrome:</p>
+    <input type="text" id="wordInput" placeholder="Type a word">
+    <button onclick="checkPalindrome()">Check</button>
+    <div id="result"></div>
+
+    <script>
+        function checkPalindrome() {
+            const wordInput = document.getElementById('wordInput').value;
+            const word = wordInput.trim();
+            const reversed = word.split('').reverse().join('');
+            const resultDiv = document.getElementById('result');
+
+            if (word === '') {
+                resultDiv.textContent = 'Please enter a word.';
+                resultDiv.style.color = 'red';
+            } else if (word === reversed) {
+                resultDiv.textContent = `"${wordInput}" is a palindrome! ✅`;
+                resultDiv.style.color = 'green';
+            } else {
+                resultDiv.textContent = `"${wordInput}" is NOT a palindrome. ❌`;
+                resultDiv.style.color = 'red';
+            }
+        }
+    </script>
+</body>
+</html>

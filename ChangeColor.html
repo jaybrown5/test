@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Demo Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      transition: background-color 0.5s ease;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to My JavaScript Demo</h1>
+  <p>Click the button below to change the background color!</p>
+  <button onclick="changeColor()">Change Color</button>
+
+  <script>
+    function changeColor() {
+      const colors = ["lightblue", "lightgreen", "lightpink", "lavender", "khaki"];
+      const index = Math.random() * colors.length;
+      const randomColor = colors[index];
+      document.body.style.backgroundColor = randomColor;
+    }
+  </script>
+</body>
+</html>

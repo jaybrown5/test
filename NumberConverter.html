@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Number Converter</title>
+<style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .converter { background: #222; color: #fff; padding: 20px; border-radius: 10px; width: 350px; }
+    h2 { text-align: center; margin-bottom: 20px; }
+    input { width: 100%; padding: 10px; margin: 10px 0; font-size: 1.2em; border-radius: 5px; border: none; }
+    button { width: 100%; padding: 10px; font-size: 1.2em; background: #28a745; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
+    button:hover { background: #218838; }
+    .output { margin-top: 15px; font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="converter">
+    <h2>Binary & Hex Converter</h2>
+    <input type="text" id="inputNumber" placeholder="Enter number">
+    <select id="inputType">
+        <option value="deciml">Decimal</option>
+        <option value="binary">Binary</option>
+        <option value="hex">Hexadecimal</option>
+    </select>
+    <button onclick="convert()">Convert</button>
+    <div class="output">
+        <p><strong>Decimal:</strong> <span id="decimalOutput"></span></p>
+        <p><strong>Binary:</strong> <span id="binaryOutput"></span></p>
+        <p><strong>Hexadecimal:</strong> <span id="hexOutput"></span></p>
+    </div>
+</div>
+
+<script>
+function convert() {
+    const input = document.getElementById('inputNumber').value.trim();
+    const type = document.getElementById('inputType').value;
+    let decimalValue;
+
+    try {
+        if (type === 'decimal') {
+            decimalValue = parseInt(input, 10);
+        } else if (type === 'binary') {
+            decimalValue = parseInt(input, 2);
+        } else if (type === 'hex') {
+            decimalValue = parseInt(input, 16);
+        }
+
+        if (isNaN(decimalValue)) throw 'Invalid input';
+
+        document.getElementById('decimalOutput').textContent = decimalValue;
+        document.getElementById('binaryoutput').textContent = decimalValue.toString(2);
+        document.getElementById('hexOutput').textContent = decimalValue.toString(16).toUpperCase();
+    } catch (error) {
+        document.getElementById('decimalOutput').textContent = 'Error';
+        document.getElementById('binaryOutput').textContent = 'Error';
+        document.getElementById('hexOutput').textContent = 'Error';
+    }
+}
+</script>
+</body>
+</html>

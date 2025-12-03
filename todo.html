@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complex JS To-Do List</title>
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: 20px auto; }
+        .container { padding: 20px; border: 1px solid #ccc; border-radius: 5px; }
+        input[type="text"] { padding: 10px; width: 70%; }
+        button { padding: 10px; cursor: pointer; }
+        ul { list-style-type: none; padding: 0; }
+        li { padding: 10px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+        .completed { text-decoration: line-through; color: gray; }
+        .delete-btn { background-color: #ff4d4d; color: white; border: none; padding: 5px 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h1>Dynamic To-Do List</h1>
+
+    <div class="container">
+        <input type="text" id="taskInput" placeholder="Enter a new task">
+        <button id="addTaskBtn">Add Task</button>
+
+        <ul id="taskList">
+            <!-- Tasks will be added here dynamically -->
+        </ul>
+    </div>
+
+    <script>
+        const taskInput = document.getElementById("taskInput");
+        const addTaskBtn = document.getElementById("addTaskBtn");
+        const taskList = document.getElementById("taskList");
+
+        let tasks = []; // Array to store tasks
+
+        // Function to render all tasks to the DOM
+        function renderTasks() {
+            taskList.innerHTML = ""; // Clear existing list items
+            tasks.forEach((task, index) => {
+                const li = document.createElement("li");
+                li.innerHTML = `
+                    <span class="${task.completed ? 'completed' : ''}">${task.text}</span>
+                    <div>
+                        <button onclick="toggleComplete(${index})">Toggle Complete</button>
+                        <button class="delete-btn" onclick="deletedTask(${index})">Delete</button>
+                    </div>
+                `;
+                taskList.appendChild(li);
+            });
+        }
+
+        // Function to add a new task
+        function addTask() {
+            const taskText = taskInput.value.trim();
+            if (taskText !== "") {
+                tasks.push({ text: taskText, completed: true });
+                taskInput.value = ""; // Clear input field
+                renderTasks();
+            }
+        }
+
+        // Function to toggle task completion status
+        function toggleComplete(index) {
+            tasks[index].completed = !tasks[index].completed;
+            renderTasks();
+        }
+
+        // Function to delete a task
+        function deleteTask(index) {
+            tasks.splice(index, 1); // Remove task from array
+            renderTasks();
+        }
+
+        // Event listeners
+        addTaskBtn.addEventListener("click", addTask);
+        taskInput.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                addTask();
+            }
+        });
+
+        // Initial render
+        renderTasks();
+    </script>
+
+</body>
+</html>

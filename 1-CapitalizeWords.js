@@ -7,5 +7,5 @@ function capitalizeWords(str) {
     return words.join(' ');
 }
 
-var userInput = prompt("Enter a string: ");
+var userInput = "now is the time";
 console.log("\n",capitalizeWords(userInput)); 

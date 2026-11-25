@@ -1,6 +1,7 @@
-function capitalizeWords(str) {
+export function capitalizeWords(str) {
     var words = str.split('');
-    for (i = 0; i < words.length; i++) {
+    var firstChar;
+    for (let i = 0; i < words.length; i++) {
         firstChar = words[i].substring(0).toUpperCase();
         words[i] = firstChar + words[i].substring(1).toLowerCase();
     }
